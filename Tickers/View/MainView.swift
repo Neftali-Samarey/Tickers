@@ -17,15 +17,13 @@ struct MainView: View {
                         timerValue: tickerViewModel.remainingTime(for: timer)
                     )
                 }
-                /*ForEach(tickerViewModel.mocks) { item in
-                    ListItemView(stockName: item.title, timerValue: "\(item.duration)")
-                }*/
             }
             .navigationTitle("Tickers")
             .animation(
                 .easeInOut(duration: 0.5),
                 value: tickerViewModel.sortedTimers.map(\.id)
             )
+            // TODO: - incomplete navigation flow
             /*.navigationDestination(for: AppRoute.self) { destination in
                 switch destination {
                 case .home:

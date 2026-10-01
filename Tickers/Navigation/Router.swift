@@ -16,16 +16,17 @@ class Router {
     // an array for AppRoute paths
     var path = [AppRoute]()
     
+    /// Pass a `appRoute` case for the designated view to navigate to.
     func navigate(to appRoute: AppRoute) {
         path.append(appRoute)
     }
     
-    // Pops back to the last destination
+    /// Pops back to the last destination
     func pop() {
         path.removeLast()
     }
     
-    // Used to pop to root of path by removing all paths
+    /// Used to pop to root of path by removing all paths
     func popToRoot() {
         path.removeAll()
     }
