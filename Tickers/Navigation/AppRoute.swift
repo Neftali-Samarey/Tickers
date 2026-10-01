@@ -10,6 +10,8 @@ import Foundation
 /// `AppRoute` creates the routes for when navigating
 ///  Parametized cases are subject to any data being passed.
 enum AppRoute: Hashable {
-    case home
-    case detail
+    case tokyo
+    case newyorkcity
+    case sanfrancisco
+    case geneva
 }

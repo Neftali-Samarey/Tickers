@@ -5,24 +5,27 @@ struct MainView: View {
     // Since this is the root view, implement the router here.
     @State private var router = Router()
     
-    // mock items
-    let mocks: [TickerItem] = {
-        return [
-            TickerItem(title: "TKYO", counter: 4.0),
-            TickerItem(title: "NYC", counter: 5.0),
-            TickerItem(title: "SFO", counter: 7.0),
-            TickerItem(title: "GNVA", counter: 11.0)
-        ]
-    }()
+    // Test view model that contains all elements to display on the view
+    @State private var tickerViewModel = TickerViewModel()
     
     var body: some View {
         NavigationStack(path: $router.path) {
             List {
-                ForEach(mocks) { item in
-                    ListItemView(stockName: item.title, timerValue: "\(item.counter)")
+                ForEach(tickerViewModel.sortedTimers) { timer in
+                    ListItemView(
+                        stockName: timer.title,
+                        timerValue: tickerViewModel.remainingTime(for: timer)
+                    )
                 }
+                /*ForEach(tickerViewModel.mocks) { item in
+                    ListItemView(stockName: item.title, timerValue: "\(item.duration)")
+                }*/
             }
             .navigationTitle("Tickers")
+            .animation(
+                .easeInOut(duration: 0.5),
+                value: tickerViewModel.sortedTimers.map(\.id)
+            )
             /*.navigationDestination(for: AppRoute.self) { destination in
                 switch destination {
                 case .home:
